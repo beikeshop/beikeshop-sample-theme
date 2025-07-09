@@ -1,0 +1,19 @@
+{
+    "code": "sample_theme",
+    "name": {
+        "zh_cn": "开发示例模板",
+        "en": "Sample Template"
+    },
+    "description": {
+        "zh_cn": "开发示例模板",
+        "en": "Sample Template"
+    },
+    "type": "theme",
+    "version": "v1.0.0",
+    "icon": "/image/logo.png",
+    "theme": "/image/theme.jpg",
+    "author": {
+        "name": "成都光大网络科技有限公司",
+        "email": "pushuo@guangda.work"
+    }
+}
