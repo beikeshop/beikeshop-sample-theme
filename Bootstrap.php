@@ -15,6 +15,16 @@ class Bootstrap
 {
     public function boot()
     {
-        //
+        // 兼容 1.6
+        add_hook_blade('home.modules.after', function ($callback, $output, $data) {
+            if (version_compare(config('beike.version'), '1.6.0') < 0) {
+                return '<style>.module-image-banner .container-fluid {padding-right: 0;padding-left: 0;}</style>';
+            }
+        });
+
+        // 兼容 2.0
+        add_hook_blade('layout.header.code', function ($callback, $output, $data) {
+            return view('SampleTheme::shop.compatible-20');
+        });
     }
 }

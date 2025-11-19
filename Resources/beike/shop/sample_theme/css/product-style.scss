@@ -89,6 +89,17 @@
       transition: all ease-out .4s;
     }
 
+    .image-after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: scale(1);
+      transition: all ease-out .4s;
+    }
+
     .button-wrap {
       width: 100%;
       position: absolute;
@@ -142,6 +153,16 @@
   @media (min-width: 768px) {
     &:hover {
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+      .image {
+        > a {
+          .image-after {
+            opacity: 1;
+            z-index: 9;
+            transform: scale(1.1);
+          }
+        }
+      }
 
       .button-wrap {
         bottom: 0;

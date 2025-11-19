@@ -167,15 +167,18 @@
     </div>
   </div>
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-right-cart"
-       aria-labelledby="offcanvasRightLabel"></div>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvas-right-cart" aria-labelledby="offcanvasRightLabel"></div>
 
-  <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvas-search-top" aria-labelledby="offcanvasTopLabel">
-    <div class="offcanvas-header">
-      <input type="text" class="form-control input-group-lg border-0 fs-4" focus placeholder="{{ __('common.input') }}"
-             value="{{ request('keyword') }}" data-lang="{{ locale() === system_setting('base.locale') ? '' : session()->get('locale') }}">
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  @if (version_compare(config('beike.version'), '2.0') >= 0)
+    <x-dynamic-component component="shop-search-popover" />
+  @else
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvas-search-top" aria-labelledby="offcanvasTopLabel">
+      <div class="offcanvas-header">
+        <input type="text" class="form-control input-group-lg border-0 fs-4" focus placeholder="{{ __('common.input') }}"
+              value="{{ request('keyword') }}" data-lang="{{ locale() === system_setting('base.locale') ? '' : session()->get('locale') }}">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
     </div>
-  </div>
+  @endif
   @hook('header.after')
 </header>

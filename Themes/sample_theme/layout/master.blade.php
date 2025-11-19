@@ -48,6 +48,10 @@
     @endif
 
     @hook('layout.header.code')
+    @if (version_compare(config('beike.version'), '2.0') >= 0)
+    @renderStyles
+    @renderScripts
+    @endif
     @stack('header')
   </head>
 <body class="@yield('body-class') {{ request('_from') }}">

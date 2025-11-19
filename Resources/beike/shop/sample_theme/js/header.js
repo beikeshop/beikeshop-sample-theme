@@ -1,9 +1,9 @@
 /*
  * @copyright     2022 beikeshop.com - All Rights Reserved.
  * @link          https://beikeshop.com
- * @Author        pu shuo <pushuo@guangda.work>
+ * @author     guangda <service@guangda.work>
  * @Date          2022-08-16 18:47:18
- * @LastEditTime  2023-12-23 12:52:09
+ * @LastEditTime  2023-12-22 11:25:24
  */
 
 $(function () {
@@ -24,8 +24,16 @@ $(function () {
 
   // 购物车侧边栏弹出
   $(document).on("click", ".btn-right-cart", function () {
-    if (!config.isLogin && !config.guestCheckout) {
-      bk.openLogin()
+    if (!config.isLogin && (config.loginShowPrice || !config.guestCheckout)) {
+      layer.open({
+        type: 2,
+        title: '',
+        shadeClose: true,
+        scrollbar: false,
+        area: ['900px', '600px'],
+        skin: 'login-pop-box',
+        content: 'login?iframe=true' //iframe的url
+      });
       return;
     }
 
@@ -55,6 +63,20 @@ $(function () {
       $('.offcanvas-right-cart-count').text(res.data.quantity);
       $('.offcanvas-right-cart-amount').text(res.data.amount_format);
     })
+  })
+
+  $(".search-wrap input").keydown(function (e) {
+    if (e.keyCode == 13) {
+      if ($(this).val() != "") {
+        location.href = "products/search?keyword=" + $(this).val()
+      }
+    }
+  })
+
+  $(".search-wrap .btn").click(function () {
+    if ($(".search-wrap input").val() != "") {
+      location.href = "products/search?keyword=" + $(".search-wrap input").val()
+    }
   })
 
   // 响应式下弹窗菜单交互
@@ -126,19 +148,14 @@ $(function () {
   $(document).on("change", "#offcanvas-right-cart .price input", function () {
     const [id, sku_id, quantity] = [$(this).data('id'), $(this).data('sku'), $(this).val() * 1];
     if ($(this).val() === '') $(this).val(1);
-    let that = this;
+
     $http.put(`/carts/${id}`, {
       quantity: quantity,
       sku_id
     }, {
       hload: true
     }).then((res) => {
-       if(res.status != 'success'){
-        layer.msg(res.message)
-        $(that).val(res.data.quantity);
-      }else {
-        updateMiniCartData(res);
-      }
+      updateMiniCartData(res);
     })
   })
 
@@ -188,7 +205,7 @@ $(function () {
 
   // PC/MB 头部滑动固定
   (function () {
-    const pbHeader = $(window).width() > 768 ? $('.header-content') : $('.header-mobile');
+    const pbHeader = $(window).width() > 768 ? $('.menu-box') : $('.header-mobile');
     if (!pbHeader.length) return;
     const headerContentTop = pbHeader.offset().top;
     const headerContentHeight = pbHeader.outerHeight(true);

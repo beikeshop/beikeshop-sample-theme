@@ -1,9 +1,9 @@
 /*
  * @copyright     2022 beikeshop.com - All Rights Reserved.
  * @link          https://beikeshop.com
- * @Author        pu shuo <pushuo@guangda.work>
+ * @author     guangda <service@guangda.work>
  * @Date          2022-08-29 17:32:51
- * @LastEditTime  2023-11-30 10:22:18
+ * @LastEditTime  2023-12-22 11:41:59
  */
 
 import http from "../../../../../../../resources/js/http.js";
@@ -23,7 +23,7 @@ $(document).ready(function ($) {
   if ($(window).width() > 992 && $('.x-fixed-top').length) {
     $('.x-fixed-top').scrollToFixed({
       zIndex: 99,
-      marginTop: $('.header-content').outerHeight(true) - 18 || 0,
+      marginTop: $('.menu-box').outerHeight(true) || 0,
       limit: function () {
         var limit = $('footer').offset().top - 84 - $('.x-fixed-top').outerHeight(true);
         return limit
@@ -34,9 +34,9 @@ $(document).ready(function ($) {
   const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
   const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-  bk.productImageResize11()
+  bk.productImageResize()
   window.addEventListener('resize', function () {
-    bk.productImageResize11()
+    bk.productImageResize()
   })
 });
 

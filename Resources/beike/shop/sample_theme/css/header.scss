@@ -80,11 +80,10 @@ header {
     background-color: #fff;
     padding: 1rem 0;
     transition: all .2s ease-in-out;
-    border-bottom: 1px solid #eee;
 
-    // body:not(.page-home) & {
-    //   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, .04);
-    // }
+    body:not(.page-home) & {
+      border-bottom: 1px solid #eee;
+    }
 
     &.fixed {
       position: fixed;

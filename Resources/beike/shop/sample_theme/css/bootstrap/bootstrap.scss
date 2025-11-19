@@ -8,7 +8,7 @@
  * @LastEditTime  2022-09-16 20:57:12
  */
 
-$primary: #fd560f;
+$primary: #0A9A73;
 $success: #71c20b;
 
 $font-size-base: 0.8rem;
@@ -91,6 +91,15 @@ $table-bg: transparent;
 // $dropdown-divider-bg:               rgba(0, 0, 0, 0.1);
 @import './bootstrap-icons';
 @import 'node_modules/bootstrap/scss/bootstrap';
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  .col-#{$breakpoint}-20 {
+    @include media-breakpoint-up($breakpoint) {
+      flex: 0 0 calc(100% / 5); // 宽度为 1/5
+      max-width: calc(100% / 5); // 同时限制最大宽度
+    }
+  }
+}
 
 .btn-primary {
   color: #fff !important;
